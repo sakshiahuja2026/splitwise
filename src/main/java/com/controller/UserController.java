@@ -1,5 +1,9 @@
 package com.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.bean.LoginBean;
 import com.bean.ResponseBean;
 import com.bean.RoleBean;
 import com.bean.UserBean;
@@ -47,6 +51,40 @@ public class UserController {
 			res.setData(user);
 			res.setMsg("Email Already Taken");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
+		}
+	}
+	@PostMapping("/login")
+	public ResponseEntity<?> authenticate(@RequestBody LoginBean login) {
+		UserBean dbUser = userRepo.findByEmail(login.getEmail());
+		//ram@ram.com ram --> sfesfsdsdr4wrwewf4wefewr --> ram  
+		//ram -> 3ew3dsdsfddssfsdfs
+ 
+		if (dbUser == null ||   bcrypt.matches(login.getPassword(), dbUser.getPassword())  == false ) {
+			ResponseBean<LoginBean> res = new ResponseBean<>();
+			res.setData(login);
+			res.setMsg("Invalid Credentials");
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(res);
+		} else {
+			//temp bean -> UserAccount --> fields -> account create 
+			
+//			List<AccountBean> accounts = accountRepo.findByUser(dbUser.getUserId());
+//			ResponseBean<List<Object>> res = new ResponseBean<>();
+//			List<Object> list = new ArrayList<Object>();
+//			list.add(dbUser);
+//			list.add(accounts);
+//			res.setData(list);
+//			res.setMsg("Login done...");
+//			return ResponseEntity.ok(res);
+
+			
+
+			ResponseBean<Map<String,Object>> res = new ResponseBean<>();
+			Map<String,Object> data = new HashMap<String,Object>();
+			data.put("user", dbUser);
+			res.setData(data);
+			res.setMsg("Login done...");
+			return ResponseEntity.ok(res);
+
 		}
 	}
 

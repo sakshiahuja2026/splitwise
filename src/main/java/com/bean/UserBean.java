@@ -83,5 +83,13 @@ public class UserBean {
 		this.role = role;
 	}
 
+	public Set<ExpenseBean> getExpense() {
+		return expense;
+	}
+
+	public void setExpense(Set<ExpenseBean> expense) {
+		this.expense = expense;
+	}
+
 	
 }

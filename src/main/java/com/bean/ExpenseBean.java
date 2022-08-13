@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class ExpenseBean {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Integer expenseId;
 	
 	Integer amount;
@@ -24,7 +24,7 @@ public class ExpenseBean {
 	
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
-	UserBean user;
+	UserBean user = new UserBean();
 	public Integer getExpenseId() {
 		return expenseId;
 	}
@@ -54,6 +54,12 @@ public class ExpenseBean {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public UserBean getUser() {
+		return user;
+	}
+	public void setUser(UserBean user) {
+		this.user = user;
 	}
 	
 }

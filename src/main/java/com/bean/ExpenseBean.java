@@ -1,5 +1,7 @@
 package com.bean;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,7 @@ public class ExpenseBean {
 	
 	Integer amount;
 	
-	Integer date;
+	Date date;
 	Integer time;
 	String description;
 	
@@ -37,10 +39,11 @@ public class ExpenseBean {
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
-	public Integer getDate() {
+	
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(Integer date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public Integer getTime() {

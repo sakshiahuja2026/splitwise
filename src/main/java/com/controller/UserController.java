@@ -43,7 +43,8 @@ public class UserController {
 			user.setPassword(encPassword);
 			userRepo.save(user);
 
-			
+			res.setData(user);
+
 			res.setMsg("Signup done...");
 
 			return ResponseEntity.ok(res);

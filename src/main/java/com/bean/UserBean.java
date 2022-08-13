@@ -31,7 +31,9 @@ public class UserBean {
 	@JoinColumn(name = "roleId", nullable = false)
 	RoleBean role;
 
-	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	Set<ExpenseBean> expense = new HashSet<>();
 
 	public Integer getUserId() {
 		return userId;

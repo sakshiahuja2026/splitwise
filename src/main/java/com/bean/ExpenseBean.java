@@ -18,8 +18,8 @@ public class ExpenseBean {
 	
 	Integer amount;
 	
-	Integer date;
-	Integer time;
+	String date;
+	String time;
 	String description;
 	
 	@ManyToOne
@@ -37,18 +37,21 @@ public class ExpenseBean {
 	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
-	public Integer getDate() {
+	
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Integer date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public Integer getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Integer time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
+
+	
 	public String getDescription() {
 		return description;
 	}
